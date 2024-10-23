@@ -48,9 +48,3 @@ const c = new Circle(10);
 
 1. Transpiler: translator + compiler. Transforma código moderno de javascript en código que puedan entender navegadores con versiones antiguas. Ejemplo: Babel
 2. Bundler: unifica archivos de javascript y reduce el tamaño. Ejemplo: WebPack
-
-## Babel
-
-
-
-## Webpack
