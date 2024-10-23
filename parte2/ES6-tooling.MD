@@ -33,3 +33,24 @@ require('./circle.js')
 
 const c = new Circle(20);
 ```
+
+## ES6 Modules
+
+Se utiliza la palabra reservada "import" y se abren llaves para traer los módulos exportados.
+
+```js
+import { Circle } from './circle.js'
+
+const c = new Circle(10);
+```
+
+## ES6
+
+1. Transpiler: translator + compiler. Transforma código moderno de javascript en código que puedan entender navegadores con versiones antiguas. Ejemplo: Babel
+2. Bundler: unifica archivos de javascript y reduce el tamaño. Ejemplo: WebPack
+
+## Babel
+
+
+
+## Webpack
