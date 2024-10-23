@@ -59,14 +59,14 @@ function extend(Child, Parent){
 }
 ```
 
-Definida la función se modificar objetos para que estos hereden de otros.
+Definida la función, ahora los objetos Child se modificarán para que hereden de Parent.
 
 ```js
 function Shape(color){
   // ...
 }
 
-function Square(s){
+function Square(side, color){
   //...
 }
 
@@ -84,7 +84,7 @@ function Shape(color){
   }
 }
 
-function Square(s){
+function Square(side, color){
   // ...
 }
 
@@ -96,4 +96,45 @@ Square.prototype.getLocation = function() {
 
   // modificar método heredado
 }
+```
+
+## Polymorphism
+
+Objetos que heredan los mismos métodos pero que al modificar el comportamiento estos pueden ser llamados sin importar la implementación utilizada.
+
+```js
+function Shape(color){
+  // ...
+  this.getLocation: function(){
+    //...
+  }
+};
+
+function Circle(radius, color){
+  // ...
+};
+
+function Square(side, color){
+  // ...
+};
+
+extend(Circle, Shape);
+extend(Square, Shape);
+
+Circle.prototype.getLocation = function(){
+  // sobrescribir
+}
+
+Square.prototype.getLocation = function(){
+  // sobrescribir
+}
+
+const shapes = [
+  new Circle(3, 'blue'), new Square(4, 'red')
+]
+
+for(let shape of shapes){
+  shape.getLocation() // llama al método sin importar que su implementación sea diferente en Circle o Square
+}
+
 ```
