@@ -128,13 +128,84 @@ Circle.prototype.getLocation = function(){
 Square.prototype.getLocation = function(){
   // sobrescribir
 }
+```
 
+Itero sobre los objetos de shapes y llamo al método "getLocation"
+
+```js
 const shapes = [
   new Circle(3, 'blue'), new Square(4, 'red')
 ]
 
 for(let shape of shapes){
   shape.getLocation() // llama al método sin importar que su implementación sea diferente en Circle o Square
+}
+```
+
+## Mixins
+
+Permite la composición para crear objetos y evitar herencias complejas que deben de ser modificadas al agregar objetos que no cumplan con ciertos métodos.
+
+```js
+const canEat = {
+  eat: function(){
+    this.hunger--;
+    console.log('eating');
+  }
+};
+
+const canWalk = {
+  walk: function(){
+    console.log('walk');
+  }
+};
+
+const person = Object.assign({}, canEat, canWalk);
+
+console.log(person); // { eat, walk }
+```
+
+Otra forma de hacerlo.
+
+```js
+function Person(){
+  // ...
+};
+
+Object.assign(Person.prototype, canEat, canWalk);
+
+const person1 = new Person();
+
+console.log(person1); // { eat, walk }
+```
+
+Se pueden combinar de distintas formas.
+
+```js
+const canSwim = {
+  swim: function(){
+    console.log('swim')
+  }
+};
+
+function Fish(){
+  // ...
+};
+
+Object.assign(Fish.prototype, canEat, canSwim);
+
+const fish = new Fish();
+
+console.log(fish); // { eat, swim }
+
+```
+
+Se puede estandarizar el proceso de combinar objetos a través de una función que lo realice.
+
+```js
+// Recibe el prototype y los objetos a través del spread operator, esto para recibir más de uno
+function mixin(target, ...sources){
+  Object.assign(target, ...sources);
 }
 
 ```
